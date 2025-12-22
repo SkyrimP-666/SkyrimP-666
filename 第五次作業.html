@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <title>金錢分配視覺化</title>
+  
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <script>
+    /*圖表*/
+    google.charts.load('current', { packages: ['corechart'] });
+    google.charts.setOnLoadCallback(initChart);
+
+    let chart;
+    let customItems = [];
+
+    function initChart() {
+      chart = new google.visualization.PieChart(
+        document.getElementById('piechart')
+      );
+    }
+
+    /*新增項目*/
+    function addItem() {
+      const name = document.getElementById('itemName').value;
+      const amount = Number(document.getElementById('itemAmount').value);
+
+      if (name === '' || amount <= 0) {
+        alert('請輸入正確的項目名稱與金額');
+        return;
+      }
+
+      customItems.push({ name, amount });
+
+      document.getElementById('itemName').value = '';
+      document.getElementById('itemAmount').value = '';
+
+      renderItemList();
+    }
+
+    /*項目清單*/
+    function renderItemList() {
+      const tbody = document.getElementById('itemList');
+      tbody.innerHTML = '';
+
+      customItems.forEach((item, index) => {
+        tbody.innerHTML += `
+          <tr>
+            <td>${item.name}</td>
+            <td>${item.amount}</td>
+            <td>
+              <button onclick="deleteItem(${index})">刪除</button>
+            </td>
+          </tr>
+        `;
+      });
+    }
+
+    /*刪除項目*/
+    function deleteItem(index) {
+      customItems.splice(index, 1);
+      renderItemList();
+    }
+
+    /*產生圓餅圖*/
+    function drawCustomChart() {
+      if (customItems.length === 0) {
+        alert('請先加入至少一個項目');
+        return;
+      }
+
+      const chartData = [['項目', '金額']];
+      customItems.forEach(item => {
+        chartData.push([item.name, item.amount]);
+      });
+
+      const data = google.visualization.arrayToDataTable(chartData);
+
+      const options = {
+        title: '自訂金錢分配圓餅圖',
+        pieHole: 0.4
+      };
+
+      chart.draw(data, options);
+    }
+  </script>
+</head>
+
+<body>
+  <h2>💰 金錢分配視覺化</h2>
+  <h3>➕ 新增項目</h3>
+  <div>
+    項目名稱：
+    <input type="text" id="itemName" placeholder="例如：學習">
+    金額：
+    <input type="number" id="itemAmount" placeholder="例如：1200">
+    <button onclick="addItem()">加入</button>
+  </div>
+
+  <h3>📋 已新增項目</h3>
+  <table border="1" cellpadding="6">
+    <thead>
+      <tr>
+        <th>項目</th>
+        <th>金額</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody id="itemList"></tbody>
+  </table>
+
+  <br>
+  <button onclick="drawCustomChart()">生成自訂圓餅圖</button>
+
+  <div id="piechart" style="width: 800px; height: 400px;"></div>
+</body>
+
+</html>
