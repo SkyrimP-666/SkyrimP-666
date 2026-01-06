@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>北部玄駒</title>
+<style>
+* { box-sizing: border-box; }
+html, body {
+  height: 100%;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: "Microsoft JhengHei", sans-serif;
+  background: url("https://storage.moegirl.org.cn/moegirl/commons/0/08/UPDCO_2021_OsakaHai.jpg!/fw/1200/watermark/url/L21vZWdpcmwvd2F0ZXJtYXJrLnBuZw==/align/southeast/margin/10x10/opacity/50?v=20220509145230") center/cover fixed;
+  min-height: 100vh;
+}
+
+/* 上方 */
+.top {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background: #FF5151;
+  color: white;
+  text-align: center;
+  line-height: 60px;
+  font-size: 26px;
+  z-index: 100;
+}
+
+/* 內容容器 */
+.container {
+  flex: 1;
+  display: flex;
+  margin-top: 60px;
+  padding-bottom: 60px;
+}
+
+/* 左中右版面 */
+.left { width: 15%; padding-top: 30px; text-align: center; }
+.middle { width: 70%; padding: 30px; }
+.right { width: 15%; }
+
+/* 頁面內容 */
+.page {
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  margin-bottom: 20px;
+}
+
+/* 下方版面固定 */
+.down {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background: #FF5151;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  z-index: 100;
+}
+
+/* 下拉選單 */
+.dropdown { position: relative; display: inline-block; width: 90%; }
+.dropbtn {
+  background-color: #FF5151;
+  color: white;
+  padding: 14px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 8px;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+.dropdown-content a {
+  color: #333;
+  padding: 12px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content a:hover { background-color: #f0f0f0; }
+.show { display: block; }
+
+/* 圖片 */
+.page-img {
+  display: block;
+  width: 40%;
+  margin: 20px auto;
+  transition: 0.4s;
+}
+.page-img:hover { transform: scale(1.05); }
+
+/* 手機版 */
+@media screen and (max-width: 768px) {
+  .left { width: 100%; }
+  .middle { width: 100%; }
+  .right { display: none; }
+  .content { flex-direction: column; }
+}
+
+/* 官方簡介左右排版 */
+.content { display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+.text-left { width: 60%; }
+.image-right { width: 40%; text-align: right; }
+.image-right img { width: 100%; max-width: 260px; transition: 0.4s; }
+.image-right img:hover { transform: scale(1.05); }
+
+/*衣服*/
+.costume-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  margin-top: 20px;
+}
+
+.costume-item {
+  text-align: center;
+}
+
+.costume-item .page-img {
+  width: 100%;
+  max-width: 150px;
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+.costume-item .page-img:hover {
+  transform: scale(1.1);
+}
+
+.costume-name {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #333;
+}
+
+
+</style>
+</head>
+
+<body>
+<!-- 上方面板 -->
+<div class="top">北部玄駒</div>
+
+<!-- 左中右容器 -->
+<div class="container">
+  <div class="left">
+    <div class="dropdown">
+      <button onclick="toggleMenu()" class="dropbtn">選單</button>
+      <div id="myDropdown" class="dropdown-content">
+        <a href="#" onclick="changePage('page1')">基本資料</a>
+        <a href="#" onclick="changePage('page2')">成績紀錄</a>
+        <a href="#" onclick="changePage('page3')">衣裝差分</a>
+        <a href="#" onclick="changePage('page4')">現實考據</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="middle">
+    <div id="page1" class="page">
+      <h1>北部玄駒、キタサンブラック、Kitasan Black</h1>
+      <h3>首先要行動！不行動的話什麼都不會開始的！</h3>
+      <h3>最喜歡祭典！活潑又開朗，是個重情義的賽馬娘。當有人遇到困難就會幫忙，有人感到困擾就會去詢問…… 是個受到許多人仰慕的溫柔賽馬娘，但有時講話比較粗魯。這樣的她尚未找到自己的夢想。 因此就這樣抱持著嶄新的心，面帶笑容地奔跑。朝向充滿耀眼光芒的未來！</h3>
+      <div class="content">
+        <div class="text-left">
+          <p>別號:小北、北黑</p>
+          <p>身高:162cm</p>
+          <p>體重：迅猛成長中！</p>
+          <p>三圍：B85-W56-H88</p>
+          <p>生日：3月10日</p>
+          <p>星座:雙魚座</p>
+          <p>聲優:矢野妃菜喜</p>
+        </div>
+        <div class="image-right">
+          <img class="page-img"
+            src="https://static.wikia.nocookie.net/newkomica-kari/images/5/5b/%E5%8C%97%E9%83%A8%E7%8E%84%E9%A7%92_%E5%8B%9D%E8%B2%A0%E6%9C%8D.png/revision/latest?cb=20230313031635&path-prefix=zh-tw"
+            onmouseover="this.src='https://creator-static.komoejoy.com/cdc356b851a1df53de878c5b0dbe3924de1966aa874b6a0c530840b2b92fd5c7.png'"
+            onmouseout="this.src='https://static.wikia.nocookie.net/newkomica-kari/images/5/5b/%E5%8C%97%E9%83%A8%E7%8E%84%E9%A7%92_%E5%8B%9D%E8%B2%A0%E6%9C%8D.png/revision/latest?cb=20230313031635&path-prefix=zh-tw'">
+        </div>
+      </div>
+    </div>
+
+    <div id="page2" class="page" style="display:none;">
+      <h2>成績紀錄</h2>
+      <p>GI 菊花賞</p>
+      <p>GI 春季天皇賞</p>
+      <p>GI 日本盃</p>
+      <p>GI 大阪盃</p>
+      <p>GI 秋季天皇賞</p>
+      <p>GI 有馬紀念</p>
+      <p>GII  春季錦標</p>
+      <p>GII  聖烈特紀念</p>
+      <p>GII  京都大賞典</p>
+    </div>
+
+    <div id="page3" class="page" style="display:none;">
+      <h2>衣裝差分</h2>
+      <div class="costume-grid">
+        <div class="costume-item">
+          <img class="page-img" src="https://patchwiki.biligame.com/images/umamusume/thumb/b/be/mxackfbcoxla3877xb1wikkdi99b4gm.png/600px-Zf_106801.png" alt="服裝1">
+          <div class="costume-name">制服</div>
+          <div class="costume-name"></div>
+        </div>
+        <div class="costume-item">
+          <img class="page-img" src="https://static.wikia.nocookie.net/newkomica-kari/images/5/5b/%E5%8C%97%E9%83%A8%E7%8E%84%E9%A7%92_%E5%8B%9D%E8%B2%A0%E6%9C%8D.png/revision/latest?cb=20230313031635&path-prefix=zh-tw" alt="服裝2">
+          <div class="costume-name">決勝服</div>
+          <div class="costume-name">錦上．大判御輿</div>
+        </div>
+        <div class="costume-item">
+          <img class="page-img" src="https://patchwiki.biligame.com/images/umamusume/thumb/f/f4/qk0jo6xx469epmc7rn6hzwn7w6gsy0n.png/600px-Yf_1068.png" alt="服裝3">
+          <div class="costume-name">原案</div>
+        </div>
+        <div class="costume-item">
+          <img class="page-img" src="https://patchwiki.biligame.com/images/umamusume/thumb/4/43/0jmp4cdcxfzchgzq58utc9osbwx538x.png/600px-Stgf-1068.png" alt="服裝4">
+          <div class="costume-name">舞台服</div>
+        </div>
+        <div class="costume-item">
+          <img class="page-img" src="https://patchwiki.biligame.com/images/umamusume/thumb/9/92/ruov7g1hi4cdpckz4qncdpxaz18ctpy.png/600px-Jsf_106802.png" alt="服裝5">
+          <div class="costume-name">遊戲</div>
+          <div class="costume-name">壓軸好戲・慶鶴之志</div>
+        </div>
+        <div class="costume-item">
+          <img class="page-img" src="https://patchwiki.biligame.com/images/umamusume/thumb/7/7a/mgxxjphqemw4kt5uomvx06kar6fvnps.png/600px-Jsf_106803.png" alt="服裝6">
+          <div class="costume-name">最終</div>
+          <div class="costume-name">償願謝幕之花</div>
+        </div>
+  </div>
+    </div>
+
+    <div id="page4" class="page" style="display:none;">
+      <h2>現實考據</h2>
+      <h3>北部玄駒（日語：キタサンブラック，英語：Kitasan Black），是日本純種競賽馬匹，競賽生涯一共奪得七項一級賽，獲得獎金高達18億7684萬3000日圓，並於2020年被選為日本中央競馬會殿堂馬。</h3>
+      <p>名字中，Kitasan（キタサン）是馬主北島三郎的冠名，取自其本人姓氏和名字的第一個字「北」（キタ）和「三」（サン），香港則偏向使用意譯，翻譯為「北部」；Black（ブラック）即是黑色，聯想自其父系Black Tide的名字，香港則用同樣代表黑色的「玄」再結合代表馬的「駒」去進行翻譯。</p>
+      <p>2012年3月10日於北海道日高町梁川牧場誕生。之後被和梁川牧場有多年聯繫的日本著名演歌歌手北島三郎以350萬日圓友情價買下，並以其經營之大野商事之名義進行馬主登錄。據北島所說，買下此馬的原因爲馬匹的眼睛及臉和他本人一樣帥氣。</p>
+      <p>2013年11月12日，北部玄駒被轉移到北海道新冠町的日高輕種馬共同育成所。</p>
+      <p>2014年11月16日，交由栗東訓練中心練馬師清水久詞進行訓練。</p>
+      <p>戰績:20戰12冠2亞4季</p>
+    </div>
+  </div>
+
+  <div class="right"></div>
+</div>
+
+<!-- 下方面板 -->
+<div class="down">🤍小北🤍</div>
+
+<script>
+function toggleMenu() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+function changePage(pageId) {
+  document.getElementById("myDropdown").classList.remove("show");
+  document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+  document.getElementById(pageId).style.display = 'block';
+}
+
+// 點擊空白處關閉下拉選單
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+    document.getElementById("myDropdown").classList.remove("show");
+  }
+}
+</script>
+
+</body>
+</html>
